@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:moves": "node scripts/build-moves-index.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -28,4 +29,5 @@
   "overrides": {
     "vite": "npm:rolldown-vite@7.2.5"
   }
+
 }
