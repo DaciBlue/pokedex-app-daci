@@ -18,11 +18,20 @@ function ItemIcon({ item }) {
   return <img className="itemIcon" src={item.icon} alt={item.es} />;
 }
 
-function EdgeList({ node, depth, namesMap, spritesMap, itemsMap, onSelect }) {
+function EdgeList({
+  node,
+  depth,
+  namesMap,
+  spritesMap,
+  itemsMap,
+  onSelect,
+  indent = true,
+}) {
   return (
     <>
       {node.next.map((edge) => {
         const method = evoMethodToSpanish(edge.details, itemsMap);
+
         const itemName =
           edge.details?.item?.name || edge.details?.held_item?.name || null;
         const item = itemName ? itemsMap?.[itemName] : null;
@@ -30,7 +39,7 @@ function EdgeList({ node, depth, namesMap, spritesMap, itemsMap, onSelect }) {
         return (
           <div
             key={`${node.name}->${edge.node.name}`}
-            style={{ marginLeft: depth * 18 }}
+            style={{ marginLeft: indent ? depth * 18 : 0 }}
           >
             <div className="evoRow">
               <EvoChip
@@ -64,6 +73,7 @@ function EdgeList({ node, depth, namesMap, spritesMap, itemsMap, onSelect }) {
               spritesMap={spritesMap}
               itemsMap={itemsMap}
               onSelect={onSelect}
+              indent={indent}
             />
           </div>
         );
@@ -147,11 +157,10 @@ export default function EvolutionChain({
   const hasBranches = (tree.next?.length || 0) > 1;
 
   return (
-    <div className="card" style={{ maxWidth: 780, marginTop: 12 }}>
-      <div style={{ fontWeight: 800, marginBottom: 10, fontSize: 20 }}>
-        Evoluciones
-      </div>
-
+    <div
+      className={`card ${hasBranches ? "evoBranched" : "evoLinear"}`}
+      style={{ maxWidth: 780, marginTop: 12 }}
+    >
       {hasBranches ? (
         <Branches
           tree={tree}
@@ -168,6 +177,7 @@ export default function EvolutionChain({
           spritesMap={spritesMap}
           itemsMap={itemsMap}
           onSelect={onSelect}
+          indent={false}
         />
       )}
     </div>

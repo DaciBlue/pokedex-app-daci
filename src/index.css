@@ -76,7 +76,7 @@ button:disabled {
 .typeBadge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -92,7 +92,7 @@ button:disabled {
   align-items: center;
   gap: 16px;
   margin-top: 10px;
-
+  justify-content: center;
   flex-wrap: nowrap; /* ✅ clave: no romper a otra línea */
   min-width: 0;
 }
@@ -136,16 +136,17 @@ button:disabled {
   font-size: 15px;
   color: var(--muted);
   margin-top: 2px;
+
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 360px;
 }
+
 .itemIcon {
   width: 30px;
   height: 30px;
   vertical-align: middle;
-}
-
-/* --- Type icon bubble (dark friendly) --- */
-.typeBadge {
-  gap: 10px;
 }
 
 .typeCircle {
@@ -156,6 +157,7 @@ button:disabled {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   background: var(--c); /* ✅ color real */
   box-shadow: 0 0 22px var(--c); /* ✅ glow */
@@ -167,6 +169,14 @@ button:disabled {
 .typeCircle:hover {
   filter: saturate(170%);
   transform: scale(1.08);
+}
+
+.typeCircle .typeFallback {
+  display: none;
+  font-weight: 900;
+}
+.typeCircle.noIcon .typeFallback {
+  display: block;
 }
 
 .typeCircle img {
@@ -278,13 +288,6 @@ button:disabled {
   min-width: 0; /* clave para que el texto pueda partirse */
 }
 
-.evoMethod {
-  white-space: normal;
-  text-align: center;
-  line-height: 1.2;
-  max-width: 360px;
-}
-
 @media (max-width: 900px) {
   .evoBranches {
     grid-template-columns: 1fr; /* Eevee arriba */
@@ -301,9 +304,6 @@ button:disabled {
     justify-items: center;
     gap: 10px;
   }
-  .evoMethod {
-    max-width: 100%;
-  }
 
   .evoRow {
     flex-wrap: wrap; /* en móvil sí dejamos que baje */
@@ -313,7 +313,7 @@ button:disabled {
   }
 }
 
-/* --- Card main polish --- */
+/* --- Card main polish (limpio) --- */
 .cardTitle {
   display: flex;
   align-items: baseline;
@@ -322,18 +322,21 @@ button:disabled {
 }
 
 .cardSection {
+  text-align: left;
   margin-top: 14px;
   padding-top: 12px;
   border-top: 1px solid var(--border);
 }
 
 .sectionTitle {
+  text-align: left;
   font-weight: 900;
   letter-spacing: 0.2px;
   margin-bottom: 10px;
-  color: var(--text);
+  color: rgba(255, 255, 255, 0.92);
 }
 
+/* Pills */
 .pillBtn {
   display: inline-flex;
   align-items: center;
@@ -348,33 +351,148 @@ button:disabled {
   cursor: pointer;
   transition: 160ms;
 }
-
 .pillBtn:hover {
   transform: translateY(-1px);
 }
-
 .pillBtnStrong {
   box-shadow: 0 0 18px rgba(120, 255, 170, 0.1);
 }
-
 .pillBtnWeak {
   box-shadow: 0 0 18px rgba(255, 120, 120, 0.1);
 }
 
+/* Icono alineado */
 .pillIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-1px);
 }
 
+/* Header centrado (solo arriba) */
+.pokeHeader {
+  text-align: center;
+  margin-bottom: 6px;
+}
+.pokeSprite {
+  display: block;
+  margin: 0 auto 6px;
+}
+.typeLabel {
+  margin-top: 10px;
+  font-weight: 900;
+}
+.typeRowCenter {
+  justify-content: center;
+}
+
+/* Matchups */
+.matchupBlock {
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.matchupCard {
+  text-align: left;
+}
+.matchupLabel {
+  margin-top: 10px;
+  font-weight: 900;
+  text-align: left;
+}
+
+/* Datos */
 .metaLine {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  color: rgba(255, 255, 255, 0.78);
 }
 .metaKey {
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 900;
+  margin-right: 6px;
+}
+.metaLineStrong {
   font-weight: 900;
   color: rgba(255, 255, 255, 0.9);
+}
+
+/* Stats labels */
+.statLabel {
+  color: rgba(255, 255, 255, 0.62);
+  font-weight: 900;
+}
+
+/* Movimientos */
+.moveCard {
+  padding: 18px;
+}
+.moveTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.moveTitle {
+  font-size: 26px;
+  font-weight: 900;
+}
+.moveDesc {
+  margin-top: 12px;
+  line-height: 1.4;
+}
+
+.moveBadges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  font-weight: 900;
+}
+
+.moveGrid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 10px;
+}
+.moveStat {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+@media (max-width: 800px) {
+  .moveGrid {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+  }
+}
+
+.fabTop {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(10, 12, 18, 0.8);
+  color: var(--text);
+  font-weight: 900;
+  cursor: pointer;
+  z-index: 50;
 }

@@ -37,6 +37,24 @@ export default function Pokedex() {
   const [spritesMap, setSpritesMap] = useState({});
   const [itemsMap, setItemsMap] = useState({});
 
+  const [generation, setGeneration] = useState("");
+
+  const GEN_ROMAN = {
+    i: "I",
+    ii: "II",
+    iii: "III",
+    iv: "IV",
+    v: "V",
+    vi: "VI",
+    vii: "VII",
+    viii: "VIII",
+    ix: "IX",
+  };
+  const genToRoman = (gName) => {
+    const key = (gName || "").replace("generation-", "");
+    return GEN_ROMAN[key] || key.toUpperCase();
+  };
+
   async function prefetchAbilities(p) {
     const abilityNames = p.abilities.map((a) => a.ability.name);
     const info = {};
@@ -92,6 +110,7 @@ export default function Pokedex() {
       const species = await getSpeciesByPokemonId(p.id);
       setSpanishName(pickSpanishName(species));
       setFlavor(pickSpanishFlavor(species));
+      setGeneration(genToRoman(species.generation?.name));
 
       const evoUrl = species.evolution_chain?.url;
       if (!evoUrl) return;
@@ -156,8 +175,7 @@ export default function Pokedex() {
 
   return (
     <div className="container">
-      <h2 style={{ margin: "8px 0 12px" }}>Pokédex</h2>
-
+      <h2 style={{ margin: "8px 0 12px", textAlign: "left" }}>Pokédex</h2>
       <form onSubmit={onSearch} className="row" style={{ marginBottom: 12 }}>
         <input
           value={q}
@@ -183,6 +201,7 @@ export default function Pokedex() {
             flavor={flavor}
             abilitiesInfo={abilitiesInfo}
             matchups={matchups}
+            generation={generation}
           />
 
           <EvolutionChain

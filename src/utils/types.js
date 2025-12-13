@@ -17,4 +17,5 @@ export const TYPE_ES = {
   dark: "Siniestro",
   steel: "Acero",
   fairy: "Hada",
+  shadow: "Sombra",
 };
