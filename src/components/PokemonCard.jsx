@@ -44,7 +44,7 @@ function AbilityTag({ label, open, onClick }) {
 
 function TypePill({ typeKey }) {
   const es = TYPE_ES[typeKey] || typeKey;
-  const iconUrl = `/types/${typeKey}.svg`;
+  const iconUrl = `${import.meta.env.BASE_URL}types/${typeKey}.svg`;
   return (
     <span className="typeBadge" key={typeKey}>
       <span className={`typeCircle t-${typeKey}`}>
@@ -119,7 +119,7 @@ export default function PokemonCard({
           {pokemon.types.map((t) => {
             const key = t.type.name;
             const es = TYPE_ES[key] || key;
-            const iconUrl = `/types/${key}.svg`;
+            const iconUrl = `${import.meta.env.BASE_URL}types/${key}.svg`;
 
             return (
               <span key={key} className="typeBadge">

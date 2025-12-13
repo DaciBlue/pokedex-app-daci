@@ -35,7 +35,7 @@ function Chip({ children }) {
 
 function TypePill({ typeKey }) {
   const es = TYPE_ES[typeKey] || typeKey;
-  const iconUrl = `/types/${typeKey}.svg`;
+  const iconUrl = `${import.meta.env.BASE_URL}types/${typeKey}.svg`;
   return (
     <span className="typeBadge">
       <span className={`typeCircle t-${typeKey}`}>

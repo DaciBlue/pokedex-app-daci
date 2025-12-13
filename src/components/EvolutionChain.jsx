@@ -85,7 +85,7 @@ function EdgeList({
 function Branches({ tree, namesMap, spritesMap, itemsMap, onSelect }) {
   return (
     <div className="evoBranches">
-      {/* Eevee una sola vez, centrado */}
+      {/* Base (Eevee una sola vez, centrado/izq según media query) */}
       <div className="evoBranchLeft">
         <EvoChip
           name={tree.name}
@@ -105,7 +105,6 @@ function Branches({ tree, namesMap, spritesMap, itemsMap, onSelect }) {
 
           return (
             <div key={`${tree.name}->${edge.node.name}`}>
-              {/* Fila que NO se rompe: método en columna 1, evo en columna 2 */}
               <div className="evoBranchLine">
                 <div className="evoBranchMethod">
                   <span className="muted">→</span>
@@ -161,6 +160,11 @@ export default function EvolutionChain({
       className={`card ${hasBranches ? "evoBranched" : "evoLinear"}`}
       style={{ maxWidth: 780, marginTop: 12 }}
     >
+      {/* ✅ Título a la izquierda (mismo estilo que secciones) */}
+      <div className="sectionTitle" style={{ marginBottom: 12 }}>
+        Evoluciones
+      </div>
+
       {hasBranches ? (
         <Branches
           tree={tree}

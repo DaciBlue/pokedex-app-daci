@@ -18,7 +18,7 @@ function norm(s) {
 
 function MoveTypeBadge({ typeKey }) {
   const es = TYPE_ES[typeKey] || typeKey;
-  const iconUrl = `/types/${typeKey}.svg`;
+  const iconUrl = `${import.meta.env.BASE_URL}types/${typeKey}.svg`;
 
   return (
     <span className="typeBadge" title={es}>
@@ -65,7 +65,9 @@ export default function Moves() {
       try {
         setErr("");
         setLoading(true);
-        const res = await fetch("/data/moves-index.json");
+        const res = await fetch(
+          `${import.meta.env.BASE_URL}data/moves-index.json`
+        );
         if (!res.ok) throw new Error("No se pudo cargar moves-index.json");
         const data = await res.json();
         setMoves(Array.isArray(data) ? data : []);

@@ -100,7 +100,7 @@ button:disabled {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 14px;
+  padding: 12px 18px;
   border: 1px solid var(--border);
   border-radius: 21px;
   background: rgba(255, 255, 255, 0.03);
@@ -116,11 +116,15 @@ button:disabled {
 }
 
 .evoBtn {
+  line-height: 1.1;
   font-size: 22px;
   background: transparent;
   border: none;
   color: var(--text);
-  padding: 0;
+
+  /* ✅ padding real (antes se anulaba con padding:0) */
+  padding: 0 10px 0 0;
+
   cursor: pointer;
   font-weight: 800;
 
@@ -129,6 +133,7 @@ button:disabled {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .evoBtn:hover {
   text-decoration: underline;
 }
