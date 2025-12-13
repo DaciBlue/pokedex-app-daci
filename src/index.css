@@ -1,0 +1,380 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b0f14;
+  --panel: #0f1621;
+  --text: #e8eef6;
+  --muted: #9db0c6;
+  --border: #223044;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+input,
+button {
+  font: inherit;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+button {
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.card {
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.container {
+  padding: 18px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Tipos */
+.typeRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.typeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+.typeIcon {
+  font-size: 18px;
+}
+
+/* Evoluciones */
+.evoRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+
+  flex-wrap: nowrap; /* ✅ clave: no romper a otra línea */
+  min-width: 0;
+}
+.evoChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 21px;
+  background: rgba(255, 255, 255, 0.03);
+
+  max-width: 340px; /* ✅ evita que se “coma” el grid */
+  min-width: 0; /* ✅ para que el texto pueda hacer ellipsis */
+}
+
+.evoChip img {
+  width: 72px; /* ✅ grande pero razonable (100 rompe mucho) */
+  height: 72px;
+  flex: 0 0 auto;
+}
+
+.evoBtn {
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  padding: 0;
+  cursor: pointer;
+  font-weight: 800;
+
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.evoBtn:hover {
+  text-decoration: underline;
+}
+.evoMethod {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.itemIcon {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+/* --- Type icon bubble (dark friendly) --- */
+.typeBadge {
+  gap: 10px;
+}
+
+.typeCircle {
+  --c: #888;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--c); /* ✅ color real */
+  box-shadow: 0 0 22px var(--c); /* ✅ glow */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  transition: 200ms all;
+}
+
+.typeCircle:hover {
+  filter: saturate(170%);
+  transform: scale(1.08);
+}
+
+.typeCircle img {
+  width: 65%;
+  height: 65%;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+
+/* Colores tipo (inspirados en los de Pokémon) */
+.t-bug {
+  --c: #92bc2c;
+}
+.t-dark {
+  --c: #595761;
+}
+.t-dragon {
+  --c: #0c69c8;
+}
+.t-electric {
+  --c: #f2d94e;
+}
+.t-fire {
+  --c: #fba54c;
+}
+.t-fairy {
+  --c: #ee90e6;
+}
+.t-fighting {
+  --c: #d3425f;
+}
+.t-flying {
+  --c: #a1bbec;
+}
+.t-ghost {
+  --c: #5f6dbc;
+}
+.t-grass {
+  --c: #5fbd58;
+}
+.t-ground {
+  --c: #da7c4d;
+}
+.t-ice {
+  --c: #75d0c1;
+}
+.t-normal {
+  --c: #a0a29f;
+}
+.t-poison {
+  --c: #b763cf;
+}
+.t-psychic {
+  --c: #fa8581;
+}
+.t-rock {
+  --c: #c9bb8a;
+}
+.t-steel {
+  --c: #5695a3;
+}
+.t-water {
+  --c: #539ddf;
+}
+
+/* Ramas (Eevee -> muchas evoluciones) */
+.evoBranches {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.evoBranchLeft {
+  display: flex;
+  justify-content: center;
+}
+
+.evoBranchList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.evoBranchLine {
+  min-width: 0;
+  display: grid;
+
+  /* método ocupa lo que pueda, chip ocupa pero sin salirse */
+  grid-template-columns: minmax(240px, 1fr) minmax(240px, 360px);
+
+  gap: 18px;
+  align-items: center;
+}
+
+.evoBranchLine .evoChip {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.evoBranchLine .evoBtn {
+  width: 100%;
+}
+
+.evoBranchMethod {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0; /* clave para que el texto pueda partirse */
+}
+
+.evoMethod {
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 360px;
+}
+
+@media (max-width: 900px) {
+  .evoBranches {
+    grid-template-columns: 1fr; /* Eevee arriba */
+    gap: 14px;
+  }
+  .evoBranchLeft {
+    justify-content: flex-start; /* o center si prefieres */
+  }
+}
+
+@media (max-width: 700px) {
+  .evoBranchLine {
+    grid-template-columns: 1fr; /* método arriba, evo abajo */
+    justify-items: center;
+    gap: 10px;
+  }
+  .evoMethod {
+    max-width: 100%;
+  }
+
+  .evoRow {
+    flex-wrap: wrap; /* en móvil sí dejamos que baje */
+  }
+  .evoChip {
+    max-width: 100%;
+  }
+}
+
+/* --- Card main polish --- */
+.cardTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cardSection {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.sectionTitle {
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.pillBtn {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-weight: 900;
+  cursor: pointer;
+  transition: 160ms;
+}
+
+.pillBtn:hover {
+  transform: translateY(-1px);
+}
+
+.pillBtnStrong {
+  box-shadow: 0 0 18px rgba(120, 255, 170, 0.1);
+}
+
+.pillBtnWeak {
+  box-shadow: 0 0 18px rgba(255, 120, 120, 0.1);
+}
+
+.pillIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-1px);
+}
+
+.metaLine {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  color: rgba(255, 255, 255, 0.78);
+}
+.metaKey {
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.9);
+}
