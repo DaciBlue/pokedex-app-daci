@@ -67,6 +67,12 @@
   box-shadow: 0 0 18px rgba(255, 255, 255, 0.06);
 }
 
+.suggestWrap {
+  position: relative;
+  width: 320px; /* igual que tu input */
+  min-width: 260px;
+}
+
 .suggestBox {
   position: absolute;
   left: 0;
@@ -79,19 +85,45 @@
   z-index: 20;
 }
 
+.suggestList {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 80;
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(10, 14, 20, 0.98);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+
+  padding: 6px;
+  max-height: 280px;
+  overflow: auto;
+}
+
 .suggestItem {
-  width: 100%;
-  text-align: left;
-  padding: 10px 12px;
-  border: 0;
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* <-- esto crea el “espacio” real */
 }
 
 .suggestItem:hover,
 .suggestItem.active {
   background: rgba(255, 255, 255, 0.06);
+}
+
+.suggestId {
+  min-width: 74px; /* para que IDs grandes no empujen raro */
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+
+.suggestName {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .movesTable {
