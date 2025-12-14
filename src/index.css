@@ -501,3 +501,84 @@ button:disabled {
   cursor: pointer;
   z-index: 50;
 }
+
+.tabBtn {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 800;
+}
+.tabBtnActive {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.typeBadgeActive {
+  outline: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.matchupHeaderLeft {
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+.matchupTitleLeft {
+  font-weight: 900;
+  text-align: left;
+}
+
+/* Tipos page only */
+.typePick.selected {
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12),
+    0 10px 30px rgba(0, 0, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+.typeTableWrap {
+  width: 100%;
+  overflow-x: auto; /* móvil */
+  padding-bottom: 6px;
+}
+
+@media (min-width: 1100px) {
+  .typeTableWrap {
+    overflow-x: visible; /* desktop */
+  }
+}
+
+.typeHeadIcon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.cell.focusCol {
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cell.focusRow {
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cell.focusBoth {
+  outline: 2px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06) inset;
+}
+
+/* Glow para tipos seleccionados (solo se activa donde exista la clase .selected) */
+.typeBadge.selected,
+.typePick.selected {
+  border-color: var(--c);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 12px var(--c);
+  transform: translateY(-1px);
+}
+
+/* Si el navegador soporta color-mix, queda más fino (menos “neón”) */
+@supports (color: color-mix(in srgb, #fff 50%, #000)) {
+  .typeBadge.selected,
+  .typePick.selected {
+    border-color: color-mix(in srgb, var(--c) 70%, var(--border));
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 0 16px color-mix(in srgb, var(--c) 55%, transparent);
+  }
+}
